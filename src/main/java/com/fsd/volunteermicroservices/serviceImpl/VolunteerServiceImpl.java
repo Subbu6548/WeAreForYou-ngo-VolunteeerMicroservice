@@ -19,7 +19,7 @@ import feign.Response;
 
 @Service
 public class VolunteerServiceImpl implements VolunteerService {	
-
+ 
 
 	@Autowired
 	private VolunteerRepository volunteerRepository;
@@ -53,18 +53,18 @@ public class VolunteerServiceImpl implements VolunteerService {
 	public VolunteerDto getVolunteerById(long id) 
 	{
 
-	Volunteer foundDonor = volunteerRepository.findById(id).get();
-	Response response = projectFeign.getProjectByCode(foundDonor.getVolunteer_project_code());
+	Volunteer foundVolunteer = volunteerRepository.findById(id).get();
+	Response response = projectFeign.getProjectByCode(foundVolunteer.getVolunteer_project_code());
 	VolunteerDto volunteerDto = new VolunteerDto();
      String body=response.body().toString();
-   Gson g=new Gson();
+    Gson g=new Gson();
    Project project=g.fromJson(body,Project.class);
-	volunteerDto.setId(foundDonor.getId());
+	volunteerDto.setId(foundVolunteer.getId());
 
-	volunteerDto.setVolunteername(foundDonor.getVolunteer_name());
+	volunteerDto.setVolunteername(foundVolunteer.getVolunteer_name());
 
-	volunteerDto.setVolunteeremail(foundDonor.getVolunteer_email());
-	volunteerDto.setVolunteerphno(foundDonor.getVolunteer_phno());
+	volunteerDto.setVolunteeremail(foundVolunteer.getVolunteer_email());
+	volunteerDto.setVolunteerphno(foundVolunteer.getVolunteer_phno());
 	volunteerDto.setProjectCode(project.getProjectCode());
      
 	volunteerDto.setProject_name(project.getProject_name());
@@ -74,4 +74,11 @@ public class VolunteerServiceImpl implements VolunteerService {
 	return volunteerDto;
 	}
 
+	@Override
+	public List<Volunteer> getAllVolunteers() 
+	{
+		List<Volunteer> volunteers = new ArrayList<Volunteer>();
+		volunteerRepository.findAll().forEach(volunteer1 -> volunteers.add(volunteer1));
+        return volunteers;
+	}
 }

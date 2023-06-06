@@ -12,5 +12,6 @@ import com.fsd.volunteermicroservices.payload.VolunteerDto;
 public interface VolunteerService {
 	public  VolunteerDto saveVolunteer(Volunteer volunteer);
 	public VolunteerDto getVolunteerById(long id);
+	public List<Volunteer> getAllVolunteers();
    
 }

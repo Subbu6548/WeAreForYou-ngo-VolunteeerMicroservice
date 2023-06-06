@@ -1,5 +1,7 @@
 package com.fsd.volunteermicroservices.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,11 @@ public class VolunteerController {
 	{
 		return volunteerService.getVolunteerById(volunteer_id);
 	}
-	
+	@CrossOrigin(origins = {"http://localhost:3000"})
+	@GetMapping
+	private List<Volunteer> getvolunteers() 
+	{
+	return volunteerService.getAllVolunteers();
+	}
 
 }

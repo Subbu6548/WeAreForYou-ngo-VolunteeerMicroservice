@@ -58,5 +58,27 @@ public class VolunteerDto
 	public void setProjectplace(String projectplace) {
 		this.projectplace = projectplace;
 	}
+	@Override
+	public String toString() {
+		return "VolunteerDto [id=" + id + ", volunteername=" + volunteername + ", volunteeremail=" + volunteeremail
+				+ ", volunteerphno=" + volunteerphno + ", projectCode=" + projectCode + ", project_name=" + project_name
+				+ ", project_description=" + project_description + ", projectplace=" + projectplace + "]";
+	}
+	public VolunteerDto(long id, String volunteername, String volunteeremail, long volunteerphno, long projectCode,
+			String project_name, String project_description, String projectplace) {
+		super();
+		this.id = id;
+		this.volunteername = volunteername;
+		this.volunteeremail = volunteeremail;
+		this.volunteerphno = volunteerphno;
+		this.projectCode = projectCode;
+		this.project_name = project_name;
+		this.project_description = project_description;
+		this.projectplace = projectplace;
+	}
+	public VolunteerDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 }
